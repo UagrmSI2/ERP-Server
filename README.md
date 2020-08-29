@@ -1,4 +1,4 @@
-``git clone https://www.github.com/bit-devs/ERP-Server.git``
+``https://github.com/UagrmSI2/ERP-Server.git``
 
 ``cd to project``
 
