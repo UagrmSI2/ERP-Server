@@ -18,7 +18,6 @@ class CreateEmployeesTable extends Migration
             $table->string('ci')->unique();
             $table->string('nombre');
             $table->string('apellido');
-            $table->string('email')->unique();
             $table->char('sexo',1);
             $table->unsignedBigInteger('rol_id');
             $table->unsignedBigInteger('departament_id');
