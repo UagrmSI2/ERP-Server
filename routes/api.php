@@ -19,3 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get('users','UserController@getAll');
 Route::get('readCities','CityController@getAll');
+
+//---------------------Crud Proveedores---------------
+
+Route::post('providers','ProviderController@post');
