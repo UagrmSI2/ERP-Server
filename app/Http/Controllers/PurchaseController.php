@@ -46,6 +46,7 @@ class PurchaseController extends Controller
                 $deposit_product->deposit_id=$deposit_id;
                 $deposit_product->stock=$product['cantidad'];
                 $deposit_product->save();
+                //holis
             }
             DB::table('purchase_details')->insert($row);
         }
