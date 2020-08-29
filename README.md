@@ -13,3 +13,6 @@
 *GO TO http://localhost/phpmyadmin/ IN A BROWSER*
 
 *CREATE A DATABASE WITH THE NAME: erp-si2*
+
+``php artisan migrate --seed``
+
