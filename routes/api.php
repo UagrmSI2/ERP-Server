@@ -23,3 +23,23 @@ Route::get('readCities','CityController@getAll');
 //---------------------Crud Proveedores---------------
 
 Route::post('providers','ProviderController@post');
+Route::put('providers/update/{id}','ProviderController@put');
+Route::get('providers/get','ProviderController@get');
+Route::delete('providers/delete/{id}','ProviderController@delete');
+
+
+//----------------------Crud Categorias---------------
+Route::get('category','CategoryController@read');
+Route::post('category','CategoryController@create');
+Route::put('category/{id}','CategoryController@update');
+Route::delete('category/{id}','CategoryController@destroy');
+//-----------------------Crud Productos-----------------
+Route::get('product','ProductController@read');
+Route::post('product','ProductController@create');
+Route::put('product/{id}','ProductController@update');
+Route::delete('product/{id}','ProductController@destroy');
+
+
+
+
+
