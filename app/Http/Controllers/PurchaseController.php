@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\DepositProduct;
 use App\Product;
 use Illuminate\Support\Facades\DB;
+//prueba2
 
 class PurchaseController extends Controller
 {
