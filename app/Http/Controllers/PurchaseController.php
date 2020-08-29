@@ -30,12 +30,16 @@ class PurchaseController extends Controller
                 'cantidad'=>$product['cantidad'],
                 'precio'=>$productInfo->precio,
             ];
-            DB::table('purchase_details')->insert($row);
+            
             $total_price=$total_price+($row['cantidad']*$row['precio']);
-            $deposit_product=DepositProduct::where('product_id',$product['product_id'])->where('deposit_id',$deposit_id)->first();
+            $deposit_product=DepositProduct::where('product_id',$product['id'])->where('deposit_id',$deposit_id)->first();
             if($deposit_product!=null){
-                $deposit_product->stock=$deposit_product->stock+$product['cantidad'];
-                $deposit_product-save();
+                DB::table('deposit_products')
+                ->where('product_id',$product['id'])
+                ->where('deposit_id',$deposit_id)
+                ->update([
+                    'stock'=>$deposit_product->stock+$product['cantidad']
+                ]);
             }else{
                 $deposit_product=new DepositProduct();
                 $deposit_product->product_id=$product['id'];
@@ -43,6 +47,7 @@ class PurchaseController extends Controller
                 $deposit_product->stock=$product['cantidad'];
                 $deposit_product->save();
             }
+            DB::table('purchase_details')->insert($row);
         }
         $purchase->monto_total=$total_price;
         

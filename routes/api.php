@@ -23,10 +23,10 @@ Route::post('newPurchase','PurchaseController@setNew');
 
 //---------------------Crud Proveedores---------------
 
-Route::post('providers','ProviderController@post');
-Route::put('providers/update/{id}','ProviderController@put');
+Route::post('provider','ProviderController@post');
+Route::put('provider/update/{id}','ProviderController@put');
 Route::get('providers/get','ProviderController@get');
-Route::delete('providers/delete/{id}','ProviderController@delete');
+Route::delete('provider/delete/{id}','ProviderController@delete');
 
 
 //----------------------Crud Categorias---------------
