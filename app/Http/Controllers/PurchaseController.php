@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Purchase;
+use App\PurchaseNote;
 use Carbon\Carbon;
+use App\DepositProduct;
+use App\Product;
+use Illuminate\Support\Facades\DB;
 
 class PurchaseController extends Controller
 {
@@ -14,9 +17,11 @@ class PurchaseController extends Controller
         $purchase=new PurchaseNote();
         $purchase->fecha=Carbon::now();
         $purchase->provider_id=$request->provider_id;
-        $purchase->purchase_bill_id=$request->purchase_bill_id;
+        //$purchase->purchase_bill_id=$request->purchase_bill_id;
         $total_price=0;
-        foreach($request['products'] as $product){
+        $purchase->monto_total=0;
+        $purchase->save()
+;        foreach($request['products'] as $product){
             $productInfo=Product::where('id',$product['id'])->first();
             $row=[
                 'purchase_note_id'=>$purchase->id,
@@ -24,7 +29,6 @@ class PurchaseController extends Controller
                 'deposit_id'=>$deposit_id,
                 'cantidad'=>$product['cantidad'],
                 'precio'=>$productInfo->precio,
-
             ];
             DB::table('purchase_details')->insert($row);
             $total_price=$total_price+($row['cantidad']*$row['precio']);
@@ -41,6 +45,7 @@ class PurchaseController extends Controller
             }
         }
         $purchase->monto_total=$total_price;
+        
         $purchase->save();
         return response()->json('Correcto',200);
     }catch(Exception $e){

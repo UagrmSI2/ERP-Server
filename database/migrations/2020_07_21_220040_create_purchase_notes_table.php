@@ -18,9 +18,9 @@ class CreatePurchaseNotesTable extends Migration
             $table->date('fecha');
             $table->decimal('monto_total',11,2);
             $table->unsignedBigInteger('provider_id');
-            $table->unsignedBigInteger('purchase_bill_id');
+           // $table->unsignedBigInteger('purchase_bill_id');
             $table->foreign('provider_id')->references('id')->on('providers');
-            $table->foreign('purchase_bill_id')->references('id')->on('purchase_bills');
+            //$table->foreign('purchase_bill_id')->references('id')->on('purchase_bills');
             $table->timestamps();
         });
     }
