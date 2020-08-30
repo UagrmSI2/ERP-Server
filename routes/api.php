@@ -25,7 +25,7 @@ Route::post('newPurchase','PurchaseController@setNew');
 
 Route::post('provider','ProviderController@post');
 Route::put('provider/update/{id}','ProviderController@put');
-Route::get('providers/get','ProviderController@get');
+Route::get('providers','ProviderController@get');
 Route::delete('provider/delete/{id}','ProviderController@delete');
 
 
