@@ -23,7 +23,7 @@ Route::post('newPurchase','PurchaseController@setNew');
 
 //---------------------Crud Proveedores---------------
 
-Route::post('providers','ProviderController@post');
+Route::post('provider','ProviderController@post');
 Route::put('provider/update/{id}','ProviderController@put');
 Route::get('providers/get','ProviderController@get');
 Route::delete('provider/delete/{id}','ProviderController@delete');
