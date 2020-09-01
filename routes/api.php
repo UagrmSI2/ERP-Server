@@ -18,7 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('users','UserController@getAll');
-Route::get('readCities','CityController@getAll');
 Route::post('newPurchase','PurchaseController@setNew');
 
 //---------------------Crud Proveedores---------------
@@ -28,19 +27,44 @@ Route::put('provider/update/{id}','ProviderController@put');
 Route::get('providers/get','ProviderController@get');
 Route::delete('provider/delete/{id}','ProviderController@delete');
 
-
 //----------------------Crud Categorias---------------
 Route::get('category','CategoryController@read');
 Route::post('category','CategoryController@create');
 Route::put('category/{id}','CategoryController@update');
 Route::delete('category/{id}','CategoryController@destroy');
+
 //-----------------------Crud Productos-----------------
 Route::get('product','ProductController@read');
 Route::post('product','ProductController@create');
 Route::put('product/{id}','ProductController@update');
 Route::delete('product/{id}','ProductController@destroy');
 
+//------------------------Crud Paises----------------------
+Route::get('countries','CountryController@get');
+Route::post('country','CountryController@post');
+Route::put('country/{id}','CountryController@put');
+Route::delete('country/{id}','CountryController@delete');
 
+//----------------------Crud Ciudades-----------------
+
+Route::get('cities','CityController@getAll');
+Route::post('city','CityController@post');
+Route::put('city/{id}','CityController@put');
+Route::delete('city/{id}','CityController@delete');
+
+//------------------Crud Sucursales---------------------
+
+Route::get('offices','OfficeController@get');
+Route::post('office','OfficeController@post');
+Route::put('office/{id}','OfficeController@put');
+Route::delete('office/{id}','OfficeController@delete');
+
+//------------------Crud Depositos---------------------
+
+route::get('deposits','DepositController@get');
+route::post('deposit','DepositController@post');
+route::put('deposit/{id}','DepositController@put');
+route::delete('deposit/{id}','DepositController@delete');
 
 
 
