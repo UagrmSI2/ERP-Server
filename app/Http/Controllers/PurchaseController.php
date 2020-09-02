@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use App\DepositProduct;
 use App\Product;
 use Illuminate\Support\Facades\DB;
-//prueba2
+
 
 class PurchaseController extends Controller
 {
@@ -18,7 +18,6 @@ class PurchaseController extends Controller
         $purchase=new PurchaseNote();
         $purchase->fecha=Carbon::now();
         $purchase->provider_id=$request->provider_id;
-        //$purchase->purchase_bill_id=$request->purchase_bill_id;
         $total_price=0;
         $purchase->monto_total=0;
         $purchase->save()
@@ -29,7 +28,7 @@ class PurchaseController extends Controller
                 'product_id'=>$product['id'],
                 'deposit_id'=>$deposit_id,
                 'cantidad'=>$product['cantidad'],
-                'precio'=>$productInfo->precio,
+                'precio'=>$productInfo->costo*$product['cantidad']
             ];
             
             $total_price=$total_price+($row['cantidad']*$row['precio']);
@@ -47,7 +46,6 @@ class PurchaseController extends Controller
                 $deposit_product->deposit_id=$deposit_id;
                 $deposit_product->stock=$product['cantidad'];
                 $deposit_product->save();
-                //holis
             }
             DB::table('purchase_details')->insert($row);
         }

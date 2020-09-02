@@ -17,10 +17,10 @@ class CreateSaleNotesTable extends Migration
             $table->bigIncrements('id');
             $table->date('fecha');
             $table->decimal('monto_total',11,2);
-            $table->unsignedBigInteger('sale_bill_id');
             $table->unsignedBigInteger('payment_id');
-            $table->foreign('sale_bill_id')->references('id')->on('sale_bills');
+            $table->unsignedBigInteger('client_id');
             $table->foreign('payment_id')->references('id')->on('payments');
+            $table->foreign('client_id')->references('id')->on('clients');
             $table->timestamps();
         });
     }

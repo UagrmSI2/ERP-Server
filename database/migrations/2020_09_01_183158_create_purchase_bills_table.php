@@ -15,6 +15,8 @@ class CreatePurchaseBillsTable extends Migration
     {
         Schema::create('purchase_bills', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('purchase_note_id');
+            $table->foreign('purchase_note_id')->references('id')->on('purchase_notes');
             $table->timestamps();
         });
     }

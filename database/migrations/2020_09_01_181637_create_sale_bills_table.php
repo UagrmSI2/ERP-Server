@@ -14,7 +14,7 @@ class CreateSaleBillsTable extends Migration
     public function up()
     {
         Schema::create('sale_bills', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->timestamps();
         });
     }

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('login','UserController@login');
 Route::get('users','UserController@getAll');
 Route::get('readCities','CityController@getAll');
 Route::post('newPurchase','PurchaseController@setNew');
