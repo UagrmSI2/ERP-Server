@@ -7,7 +7,9 @@ use App\PurchaseNote;
 use Carbon\Carbon;
 use App\DepositProduct;
 use App\Product;
+use App\PurchaseDetail;
 use Illuminate\Support\Facades\DB;
+use Exception;
 
 
 class PurchaseController extends Controller
@@ -20,8 +22,8 @@ class PurchaseController extends Controller
         $purchase->provider_id=$request->provider_id;
         $total_price=0;
         $purchase->monto_total=0;
-        $purchase->save()
-;        foreach($request['products'] as $product){
+        $purchase->save();        
+        foreach($request['products'] as $product){
             $productInfo=Product::where('id',$product['id'])->first();
             $row=[
                 'purchase_note_id'=>$purchase->id,
@@ -53,8 +55,21 @@ class PurchaseController extends Controller
         
         $purchase->save();
         return response()->json('Correcto',200);
-    }catch(Exception $e){
+         }catch(Exception $e){
         return response()->json($e->getMessage(),500);
+         }
     }
+    public function getAll(){
+        $purchases=PurchaseNote::all();
+        $response=[];
+        foreach($purchases as $purchase){
+            $products=[];
+            $details=PurchaseDetail::where('purchase_note_id',$purchase->id)->get();
+            foreach($details as $detail){
+                return $detail;
+            }
+            array_push($response,$details);
+        }
+        return response()->json( $response,200);
     }
 }

@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('login','UserController@login');
 Route::get('users','UserController@getAll');
 Route::post('newPurchase','PurchaseController@setNew');
+Route::get('purchases','PurchaseController@getAll');
 
 //---------------------Crud Proveedores---------------
 
