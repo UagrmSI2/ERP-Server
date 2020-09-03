@@ -15,13 +15,15 @@ class CreateSaleDetailsTable extends Migration
     {
         Schema::create('sale_details', function (Blueprint $table) {
             $table->unsignedBigInteger('sale_note_id');
-            $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('deposit_id');
+            /* $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('deposit_id'); */
+            $table->unsignedBigInteger('deposit_product_id');
             $table->integer('cantidad');
             $table->decimal('precio',11,2);
             $table->foreign('sale_note_id')->references('id')->on('sale_notes');
-            $table->foreign('product_id')->references('product_id')->on('deposit_products');
-            $table->foreign('deposit_id')->references('deposit_id')->on('deposit_products');
+            $table->foreign('deposit_product_id')->references('id')->on('deposit_products');
+            /* $table->foreign('product_id')->references('product_id')->on('deposit_products');
+            $table->foreign('deposit_id')->references('deposit_id')->on('deposit_products'); */
             $table->timestamps();
         });
     }
