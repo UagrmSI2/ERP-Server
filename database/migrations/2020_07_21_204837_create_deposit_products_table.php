@@ -14,6 +14,7 @@ class CreateDepositProductsTable extends Migration
     public function up()
     {
         Schema::create('deposit_products', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('deposit_id');
             $table->integer('stock');
