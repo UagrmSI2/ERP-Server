@@ -77,15 +77,6 @@ class PurchaseController extends Controller
                 $deposit_products=DepositProduct::where('id',$detail->deposit_product_id)->get();
                 foreach($deposit_products as $deposit_product){
                     $productInfo=Product::where('id',$deposit_product->product_id)->first();
-                    return $productInfo;
-                    /* $products=DB::table('deposit_products')
-                    ->join('products','product_id','products.id')
-                    ->where('id',$deposit_product->id)
-                    ->select(
-                        'products.nombre as nombre_producto',
-                        'products.costo'
-                    )
-                    ->get(); */
                     $products=[
                         "nombre"=>$productInfo->nombre,
                         "costo_por_unidad"=>$productInfo->costo,
@@ -93,14 +84,14 @@ class PurchaseController extends Controller
                     ];
                     array_push($newProducts,$products);
                 }
-                $newPurchase=[
-                    "id"=>$purchase->id,
-                    "costoTotal"=>$purchase->monto_total,
-                    "productos"=>$newProducts
-                ];
-                array_push($response,$newPurchase); 
+                
             }
-           
+            $newPurchase=[
+                "id"=>$purchase->id,
+                "costoTotal"=>$purchase->monto_total,
+                "productos"=>$newProducts
+            ];
+            array_push($response,$newPurchase); 
         }
         return response()->json( $response,200);
     }
