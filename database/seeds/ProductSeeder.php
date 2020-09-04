@@ -16,8 +16,8 @@ class ProductSeeder extends Seeder
             [ 
                 "descripcion"=>"producto numero 1",
                 "nombre"=> "producto1",
-                "precio"=>50,
-                "costo"=>35,
+                "precio"=>50.00,
+                "costo"=>35.00,
                 "category_id"=>1
             ],
         ];

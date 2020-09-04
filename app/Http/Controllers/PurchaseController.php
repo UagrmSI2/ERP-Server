@@ -27,12 +27,9 @@ class PurchaseController extends Controller
             $productInfo=Product::where('id',$product['id'])->first();
             $row=[
                 'purchase_note_id'=>$purchase->id,
-                'product_id'=>$product['id'],
-                'deposit_id'=>$deposit_id,
                 'cantidad'=>$product['cantidad'],
                 'precio'=>$productInfo->costo*$product['cantidad']
             ];
-            
             $total_price=$total_price+($row['cantidad']*$row['precio']);
             $deposit_product=DepositProduct::where('product_id',$product['id'])->where('deposit_id',$deposit_id)->first();
             if($deposit_product!=null){
@@ -42,17 +39,28 @@ class PurchaseController extends Controller
                 ->update([
                     'stock'=>$deposit_product->stock+$product['cantidad']
                 ]);
+                $row=[
+                    'purchase_note_id'=>$purchase->id,
+                    'cantidad'=>$product['cantidad'],
+                    'precio'=>$productInfo->costo*$product['cantidad'],
+                    'deposit_product_id'=>$deposit_product->id
+                ];
             }else{
                 $deposit_product=new DepositProduct();
                 $deposit_product->product_id=$product['id'];
                 $deposit_product->deposit_id=$deposit_id;
                 $deposit_product->stock=$product['cantidad'];
                 $deposit_product->save();
+                $row=[
+                    'purchase_note_id'=>$purchase->id,
+                    'cantidad'=>$product['cantidad'],
+                    'precio'=>$productInfo->costo*$product['cantidad'],
+                    'deposit_product_id'=>$deposit_product->id
+                ];
             }
             DB::table('purchase_details')->insert($row);
         }
         $purchase->monto_total=$total_price;
-        
         $purchase->save();
         return response()->json('Correcto',200);
          }catch(Exception $e){
@@ -62,13 +70,37 @@ class PurchaseController extends Controller
     public function getAll(){
         $purchases=PurchaseNote::all();
         $response=[];
+        $newProducts=[];
         foreach($purchases as $purchase){
-            $products=[];
             $details=PurchaseDetail::where('purchase_note_id',$purchase->id)->get();
             foreach($details as $detail){
-                return $detail;
+                $deposit_products=DepositProduct::where('id',$detail->deposit_product_id)->get();
+                foreach($deposit_products as $deposit_product){
+                    $productInfo=Product::where('id',$deposit_product->product_id)->first();
+                    return $productInfo;
+                    /* $products=DB::table('deposit_products')
+                    ->join('products','product_id','products.id')
+                    ->where('id',$deposit_product->id)
+                    ->select(
+                        'products.nombre as nombre_producto',
+                        'products.costo'
+                    )
+                    ->get(); */
+                    $products=[
+                        "nombre"=>$productInfo->nombre,
+                        "costo_por_unidad"=>$productInfo->costo,
+                        "cantidad"=>$detail->cantidad
+                    ];
+                    array_push($newProducts,$products);
+                }
+                $newPurchase=[
+                    "id"=>$purchase->id,
+                    "costoTotal"=>$purchase->monto_total,
+                    "productos"=>$newProducts
+                ];
+                array_push($response,$newPurchase); 
             }
-            array_push($response,$details);
+           
         }
         return response()->json( $response,200);
     }
