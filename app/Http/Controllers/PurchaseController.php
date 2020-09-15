@@ -70,8 +70,9 @@ class PurchaseController extends Controller
     public function getAll(){
         $purchases=PurchaseNote::all();
         $response=[];
-        $newProducts=[];
+        
         foreach($purchases as $purchase){
+            $newProducts=[];
             $details=PurchaseDetail::where('purchase_note_id',$purchase->id)->get();
             foreach($details as $detail){
                 $deposit_products=DepositProduct::where('id',$detail->deposit_product_id)->get();
