@@ -30,7 +30,7 @@ class PurchaseController extends Controller
                 'cantidad'=>$product['cantidad'],
                 'precio'=>$productInfo->costo*$product['cantidad']
             ];
-            $total_price=$total_price+($row['cantidad']*$row['precio']);
+            $total_price=$total_price+($row['precio']);
             $deposit_product=DepositProduct::where('product_id',$product['id'])->where('deposit_id',$deposit_id)->first();
             if($deposit_product!=null){
                 DB::table('deposit_products')
