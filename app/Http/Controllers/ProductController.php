@@ -38,7 +38,7 @@ class ProductController extends Controller
     public function destroy($id){
         $record = Product::find($id);
         $record->delete();
-        return response([],204);
+        return response('Eliminado Correctamente',200);
     }
 
 }
