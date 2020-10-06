@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['middleware'=>'auth:api'],function(){
     Route::put('createPassword','UserController@createPassword');
     Route::post('country','CountryController@post');
+    Route::get('user','UserController@getUser');
 });
 Route::post('login','UserController@login');
 Route::get('users','UserController@getAll');

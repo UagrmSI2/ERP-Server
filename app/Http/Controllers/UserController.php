@@ -103,4 +103,8 @@ class UserController extends Controller
             return response()->json($e->getMessage(),500);
         }
     }
+    public function getUser(Request $request){
+        $user=$request->user();
+        return $user;
+    }
 }
