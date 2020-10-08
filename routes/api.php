@@ -17,12 +17,20 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::group(['middleware'=>'auth:api'],function(){
+    Route::put('createPassword','UserController@createPassword');
+    Route::post('country','CountryController@post');
+    Route::get('user','UserController@getUser');
+});
 Route::post('login','UserController@login');
 Route::get('users','UserController@getAll');
 
 //----------------Compra-----------------------------------
 Route::post('newPurchase','PurchaseController@setNew');
 Route::get('purchases','PurchaseController@getAll');
+Route::post('user','UserController@new');
+
+
 
 //------------------Venta----------------------------------
 Route::post('newSale','SaleController@setNew');
@@ -49,7 +57,7 @@ Route::delete('product/{id}','ProductController@destroy');
 
 //------------------------Crud Paises----------------------
 Route::get('countries','CountryController@get');
-Route::post('country','CountryController@post');
+
 Route::put('country/{id}','CountryController@put');
 Route::delete('country/{id}','CountryController@delete');
 

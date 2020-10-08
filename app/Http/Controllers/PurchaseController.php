@@ -16,6 +16,7 @@ class PurchaseController extends Controller
 {
     public function setNew(Request $request){
         try{
+            $user=$request->user();
         $deposit_id=$request->deposit_id;
         $purchase=new PurchaseNote();
         $purchase->fecha=Carbon::now();
@@ -62,12 +63,14 @@ class PurchaseController extends Controller
         }
         $purchase->monto_total=$total_price;
         $purchase->save();
+        AuthController::newActivity($user,'create_purchase:ok'.$purchase,'ERP-NEW PURCHASE');
         return response()->json('Correcto',200);
          }catch(Exception $e){
         return response()->json($e->getMessage(),500);
          }
     }
-    public function getAll(){
+    public function getAll(Request $request){
+        $user=$request->user();
         $purchases=PurchaseNote::all();
         $response=[];
         
@@ -93,6 +96,7 @@ class PurchaseController extends Controller
             ];
             array_push($response,$newPurchase); 
         }
+        AuthController::newActivity($user,'read_purchase:ok'.$purchase,'ERP- PURCHASE');
         return response()->json( $response,200);
     }
 }

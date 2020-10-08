@@ -56,4 +56,32 @@ class SaleController extends Controller
             return response()->json($e->getMessage(),500);
         }
     }
+    public function getAll(){
+        $sales=SaleNote::all();
+        $response=[];
+        foreach($sales as $sale){
+            $newProducts=[];
+            $details=SaleDetail::where('sale_note_id',$sale->id)->get();
+            foreach($details as $detail){
+                $deposit_products=DepositProduct::where('id',$detail->deposit_product_id)->get();
+                foreach($deposit_products as $deposit_product){
+                    $productInfo=Product::where('id',$deposit_product->product_id)->first();
+                    $products=[
+                        "Nombre"=>$productInfo->nombre,
+                        "Precio"=>$productInfo->precio,
+                        "Cantidad"=>$detail->cantidad
+                    ];
+                    array_push($newProducts,$products);
+                }   
+            }
+            $newSale=[
+                "id"=>$sale->id,
+                "Total"=>$sale->monto_total,
+                "productos"=>$newProducts
+            ];
+            array_push($response,$newSale); 
+        }
+        return response()->json( $response,200);
+
+    }
 }
