@@ -37,6 +37,7 @@ class UserController extends Controller
             $tokenResult = $user->createToken('Personal Access Token');
             $token=$tokenResult->token;
             $token->save();
+            AuthController::newActivity($user,'login:ok','ERP-LOGIN');
             return response()->json([
                 'role_id'      => $user->rol_id,
                 'role_name'    => $role->name,
@@ -45,6 +46,7 @@ class UserController extends Controller
                 'expires_at'   => 'Session closed'
             ],200);
         }catch(Exception $e){
+            AuthController::newActivity($user,'login:error','ERP-LOGIN');
             return response()->json($e->getMessage(),500);
         }
     }
@@ -84,6 +86,7 @@ class UserController extends Controller
                     'token'=>$tokenResult->accessToken
                 ];
             Mail::to($user->email)->send(new CreateUser($correo));
+            AuthController::newActivity($user,'create_user:ok','ERP-NEW USER');
             return $correo;
         }catch(Exception $e){
             return response()->json($e->getMessage(),500);
@@ -98,6 +101,7 @@ class UserController extends Controller
             $user->password=bcrypt($request['password']);
             $user->password_creada=true;
             $user->save();
+            AuthController::newActivity($user,'create_password:ok','ERP-NEW PASSWORD');
             return response()->json('Contraseña actualizada',200);
         }catch(Exception $e){
             return response()->json($e->getMessage(),500);
