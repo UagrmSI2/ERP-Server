@@ -84,8 +84,7 @@ class PurchaseController extends Controller
                         "cantidad"=>$detail->cantidad
                     ];
                     array_push($newProducts,$products);
-                }
-                
+                }   
             }
             $newPurchase=[
                 "id"=>$purchase->id,
