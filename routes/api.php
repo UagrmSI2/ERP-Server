@@ -23,6 +23,7 @@ Route::group(['middleware'=>'auth:api'],function(){
     Route::get('user','UserController@getUser');
     Route::post('newPurchase','PurchaseController@setNew');
     Route::get('purchases','PurchaseController@getAll');
+    Route::get('activities','ActivityController@getAll');
 });
 Route::post('login','UserController@login');
 Route::get('users','UserController@getAll');
