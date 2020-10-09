@@ -25,6 +25,9 @@ Route::group(['middleware'=>'auth:api'],function(){
     Route::post('newPurchase','PurchaseController@setNew');
     Route::get('purchases','PurchaseController@getAll');
     Route::get('activities','ActivityController@getAll');
+    //------------------Venta----------------------------------
+    Route::post('newSale','SaleController@setNew');
+    Route::get('sales','SaleController@getAll');
 });
 Route::post('login','UserController@login');
 Route::get('users','UserController@getAll');
@@ -33,9 +36,7 @@ Route::get('users','UserController@getAll');
 
 
 
-//------------------Venta----------------------------------
-Route::post('newSale','SaleController@setNew');
-Route::get('sales','SaleController@getAll');
+
 
 //---------------------Crud Proveedores---------------
 
@@ -83,5 +84,6 @@ route::post('deposit','DepositController@post');
 route::put('deposit/{id}','DepositController@put');
 route::delete('deposit/{id}','DepositController@delete');
 
-
+//------------------Crud Depositos---------------------
+Route::post('client','ClientController@post');
 

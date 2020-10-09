@@ -15,6 +15,7 @@ class SaleController extends Controller
 {
     public function setNew(Request $request){
         try{
+            $user=$request->user();
             $products=$request['products'];
             $sale=new SaleNote();
             $sale->fecha=Carbon::now();
@@ -51,13 +52,15 @@ class SaleController extends Controller
             }
             $sale->monto_total=$total_price;
             $sale->save();
+            AuthController::newActivity($user,'create_sale:ok'.$sale,'ERP-NEW SALE');
             return response()->json('Nota de Venta creada con exito',200);
         }catch(Exception $e){
             return response()->json($e->getMessage(),500);
         }
     }
-    public function getAll(){
+    public function getAll(Request $request){
         $sales=SaleNote::all();
+        $user=$request->user();
         $response=[];
         foreach($sales as $sale){
             $newProducts=[];
@@ -81,6 +84,7 @@ class SaleController extends Controller
             ];
             array_push($response,$newSale); 
         }
+        AuthController::newActivity($user,'read_purchase:ok'.$sale,'ERP-SALE');
         return response()->json( $response,200);
 
     }
