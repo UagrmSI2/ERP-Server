@@ -86,6 +86,5 @@ class SaleController extends Controller
         }
         AuthController::newActivity($user,'read_purchase:ok'.$sale,'ERP-SALE');
         return response()->json( $response,200);
-
     }
 }

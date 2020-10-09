@@ -84,6 +84,12 @@ route::post('deposit','DepositController@post');
 route::put('deposit/{id}','DepositController@put');
 route::delete('deposit/{id}','DepositController@delete');
 
-//------------------Crud Depositos---------------------
+//------------------Crud Clientes---------------------
 Route::post('client','ClientController@post');
+Route::get('clients','ClientController@getAll');
+
+//------------------Crud Clientes---------------------
+Route::get('departaments','DepartamentController@getAll');
+Route::post('departaments','DepartamenController@post');
+
 

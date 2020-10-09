@@ -10,10 +10,26 @@ class DepartamentSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {   
+        $departamentInformations=[
+            [
+                'nombre'=>'Sistema',
+                'cantidad_de_empleados'=>1,
+            ],
+            [
+                'nombre'=>'Recursos Humanos',
+                'cantidad_de_empleados'=>0
+            ],
+            [
+                'nombre'=>'Contabilidad',
+                'cantidad_de_empleados'=>0
+            ]
+        ];
+        foreach($departamentInformations as $departamentInformation){
         $departaments = new Departament();
-        $departaments->nombre = "Sistema";
-        $departaments->cantidad_de_empleados = 1;
+        $departaments->nombre =$departamentInformation['nombre'];
+        $departaments->cantidad_de_empleados = $departamentInformation['cantidad_de_empleados'];
         $departaments->save();
+        }
     }
 }

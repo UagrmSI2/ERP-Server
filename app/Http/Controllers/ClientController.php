@@ -24,4 +24,27 @@ class ClientController extends Controller
             return response()->json($e->getMessage(),500);
         }
     }
+    public function put(Request $request,$id){
+        try{
+            $client =Client::find($id);
+            $client->ci=$request['ci'];
+            $client->nombre = $request['nombre'];
+            $client->apellido = $request['apellido'];
+            $client->telefono = $request['telefono'];
+            $client->created_at = Carbon::now();
+            $client->updated_at = Carbon::now();
+            $client->save();
+            return response()->json('Cliente Añadido con exito',200);
+        }catch(Exception $e){
+            return response()->json($e->getMessage(),500);
+        }
+    }
+    public function getAll(){
+        try{
+            $clients=Cliente::all();
+            return response()->json($clients->toArray(),200); 
+        }catch(Exception $e){
+            return response()->json($e->getMessage(),500);
+        }
+    }
 }

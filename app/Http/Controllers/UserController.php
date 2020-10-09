@@ -11,6 +11,7 @@ use App\Mail\CreateUser;
 use Exception;
 use App\Role;
 use App\Employee;
+use App\Departament;
 use Carbon\Carbon;
 
 class UserController extends Controller
@@ -61,6 +62,9 @@ class UserController extends Controller
             $employee->departament_id=$request['departament_id'];
             $employee->created_at=Carbon::now();
             $employee->save();
+
+            $departament=Departament::find($request['departament_id']);
+            $departament->cantidad_de_empleados=$departament->cantidad_de_empleados+1;
 
             $user=new User();
             $user->email=$request['email'];
