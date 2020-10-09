@@ -21,15 +21,21 @@ Route::group(['middleware'=>'auth:api'],function(){
     Route::put('createPassword','UserController@createPassword');
     Route::post('country','CountryController@post');
     Route::get('user','UserController@getUser');
+    Route::post('user','UserController@new');
     Route::post('newPurchase','PurchaseController@setNew');
     Route::get('purchases','PurchaseController@getAll');
     Route::get('activities','ActivityController@getAll');
 });
 Route::post('login','UserController@login');
 Route::get('users','UserController@getAll');
-Route::post('user','UserController@new');
 
 
+
+
+
+//------------------Venta----------------------------------
+Route::post('newSale','SaleController@setNew');
+Route::get('sales','SaleController@getAll');
 
 //---------------------Crud Proveedores---------------
 
