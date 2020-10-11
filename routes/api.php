@@ -92,4 +92,6 @@ Route::get('clients','ClientController@getAll');
 Route::get('departaments','DepartamentController@getAll');
 Route::post('departaments','DepartamenController@post');
 
+Route::get('roles','RoleController@getAll');
+
 
