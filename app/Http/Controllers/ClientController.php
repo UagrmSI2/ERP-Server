@@ -41,7 +41,7 @@ class ClientController extends Controller
     }
     public function getAll(){
         try{
-            $clients=Cliente::all();
+            $clients=Client::all();
             return response()->json($clients->toArray(),200); 
         }catch(Exception $e){
             return response()->json($e->getMessage(),500);

@@ -19,5 +19,12 @@ class ClientSeeder extends Seeder
         $client->telefono="61616161";
         $client->created_at=Carbon::now();
         $client->save();
+        $client2=new Client();
+        $client2->ci="12346";
+        $client2->nombre="Jhon";
+        $client2->apellido="Doe";
+        $client2->telefono="61616";
+        $client2->created_at=Carbon::now();
+        $client2->save();
     }
 }
