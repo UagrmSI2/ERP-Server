@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Client;
 use Carbon\Carbon;
-
+use App\Client;
 class ClientSeeder extends Seeder
 {
     /**
