@@ -97,7 +97,7 @@ Route::get('clients','ClientController@getAll');
 
 //------------------Crud Departamentos---------------------
 Route::get('departaments','DepartamentController@getAll');
-Route::post('departament','DepartamenController@post');
+Route::post('departament','DepartamentController@post');
 
 Route::get('roles','RoleController@getAll');
 
