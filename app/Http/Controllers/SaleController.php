@@ -11,6 +11,7 @@ use App\DepositProduct;
 use App\Product;
 use App\SaleBills;
 use App\SaleDetail;
+use App\Payment;
 use Illuminate\Support\Facades\DB;
 
 class SaleController extends Controller
@@ -98,5 +99,9 @@ class SaleController extends Controller
         }
         AuthController::newActivity($user,'read_purchase:ok'.$sales,'ERP-SALE');
         return response()->json( $response,200);
+    }
+    public function getPago(){
+        $pagos=Payment::all();
+        return response()->json($pagos->toArray(),200);
     }
 }

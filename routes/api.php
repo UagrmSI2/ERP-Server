@@ -101,4 +101,6 @@ Route::post('departament','DepartamentController@post');
 
 Route::get('roles','RoleController@getAll');
 
+Route::get('payments','SaleController@getPago');
+
 
