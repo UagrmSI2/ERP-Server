@@ -96,7 +96,7 @@ class SaleController extends Controller
             ];
             array_push($response,$newSale); 
         }
-        AuthController::newActivity($user,'read_purchase:ok'.$sale,'ERP-SALE');
+        AuthController::newActivity($user,'read_purchase:ok'.$sale,'ERP-SALES');
         return response()->json( $response,200);
     }
 }
