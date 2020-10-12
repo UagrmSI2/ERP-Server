@@ -18,6 +18,11 @@ class Deposit_ProductSeeder extends Seeder
                 "deposit_id"=>1,
                 "stock"=>150
             ],
+            [
+                "product_id"=>2,
+                "deposit_id"=>2,
+                "stock"=>200
+            ],
         ];
         foreach($InformacionDepositoProductos as $InformacionDepositoProducto){
             $deposito_producto = new DepositProduct();

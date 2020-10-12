@@ -15,6 +15,11 @@ class CreateSaleBillsTable extends Migration
     {
         Schema::create('sale_bills', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string('apellido');
+            $table->date('fecha');
+            $table->decimal('monto',11,2);
+            $table->unsignedBigInteger('sale_note_id');
             $table->timestamps();
         });
     }

@@ -17,6 +17,10 @@ class DepositSeeder extends Seeder
                 "ubicacion"=>"la salle calle 2",
                 "office_id"=>1
             ],
+            [
+                "ubicacion"=>"la cuchilla",
+                "office_id"=>1
+            ],
         ];
         foreach($InformacionDepositos as $InformacionDeposito){
             $deposito = new Deposit();

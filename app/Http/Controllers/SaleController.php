@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Client;
 use Illuminate\Http\Request;
 use Exception;
 use App\SaleNote;
 use Carbon\Carbon;
 use App\DepositProduct;
 use App\Product;
+use App\SaleBills;
 use App\SaleDetail;
 use Illuminate\Support\Facades\DB;
 
@@ -53,6 +55,16 @@ class SaleController extends Controller
             $sale->monto_total=$total_price;
             $sale->save();
             AuthController::newActivity($user,'create_sale:ok'.$sale,'ERP-NEW SALE');
+
+            $bill = new SaleBills();
+            $bill->sale_note_id = $sale->id;
+            $client = Client::find($sale->client_id);
+            $bill->nombre = $client->nombre;
+            $bill->apellido = $client->apellido;
+            $bill->fecha = Carbon::now();
+            $bill->monto = $sale->monto_total;
+            $bill->save();
+
             return response()->json('Nota de Venta creada con exito',200);
         }catch(Exception $e){
             return response()->json($e->getMessage(),500);

@@ -28,6 +28,13 @@ Route::group(['middleware'=>'auth:api'],function(){
     //------------------Venta----------------------------------
     Route::post('newSale','SaleController@setNew');
     Route::get('sales','SaleController@getAll');
+    //------------------Reporte---------------------------------
+    Route::get('reportBillPurchase','ReportController@reportPurchaseBills');
+    Route::get('reportBillSale','ReportController@reportSaleBills');
+    Route::get('reportPurchaseNotes','ReportController@reportPurchaseNotes');
+    Route::get('reportSaleNotes','ReportController@reportSaleNotes');
+    Route::get('reportSaleMes','ReportController@reportSaleMes');
+    Route::get('reportPurchaseMes','ReportController@reportPurchaseMes');
 });
 Route::post('login','UserController@login');
 Route::get('users','UserController@getAll');
