@@ -43,7 +43,7 @@ class UserController extends Controller
                 'role_id'      => $user->rol_id,
                 'role_name'    => $role->name,
                 'access_token' => $tokenResult->accessToken,
-                'token_type'   => 'Bearer',
+                'token_type'   => 'Bearer', 
                 'expires_at'   => 'Session closed'
             ],200);
         }catch(Exception $e){

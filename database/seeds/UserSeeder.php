@@ -19,4 +19,4 @@ class UserSeeder extends Seeder
         $usuario->password_creada=true;
         $usuario->save();
     }
-}
+} 

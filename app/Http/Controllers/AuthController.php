@@ -7,7 +7,7 @@ use Mail;
 use App\Employee;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-
+use Exception;
 
 class AuthController extends Controller
 {
