@@ -109,7 +109,7 @@ class PurchaseController extends Controller
             ];
             array_push($response, $newPurchase);
         }
-        AuthController::newActivity($user, 'read_purchase:ok' . $purchase, 'ERP- PURCHASE');
+        AuthController::newActivity($user, 'read_purchase:ok' . $purchases, 'ERP- PURCHASE');
         return response()->json($response, 200);
     }
 }

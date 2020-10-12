@@ -17,6 +17,10 @@ class CategorySeeder extends Seeder
                 "nombre"=>"categoria1",
                 "descripcion"=>"productos de la categoria1"
             ],
+            [
+                "nombre"=>"categoria2",
+                "descripcion"=>"productos de la categoria2"
+            ],
         ];
         foreach($InformacionCategorias as $Informacioncategoria){
             $categoria = new Category();

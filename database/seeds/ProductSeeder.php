@@ -32,7 +32,14 @@ class ProductSeeder extends Seeder
                 "nombre"=> "producto3",
                 "precio"=>100.00,
                 "costo"=>70.00,
-                "category_id"=>1
+                "category_id"=>2
+            ],
+            [ 
+                "descripcion"=>"producto numero 4",
+                "nombre"=> "producto4",
+                "precio"=>120.00,
+                "costo"=>80.00,
+                "category_id"=>2
             ],
         ];
         foreach($informacionProductos as $informacionProducto){
